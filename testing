@@ -1,0 +1,39 @@
+config:
+
+ runStrategy:
+
+ runs: 1
+
+ maxSecondsBetweenRuns: 30
+
+ minSecondsBetweenRuns: 1
+
+ scenarios:
+
+ - name: kill up to 3 pods
+
+ steps:
+
+ - podAction:
+
+ matches:
+
+ - namespace: "testns"
+
+ filters:
+
+ - property:
+
+ name: "redis-*"
+
+ value: "Running"
+
+ - randomSample:
+
+ size: 3
+
+ actions:
+
+ - kill:
+
+ probability: .7
